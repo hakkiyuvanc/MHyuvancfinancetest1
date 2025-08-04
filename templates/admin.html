@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Paneli - MH YUVANC FINANCE</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <h1>Admin Paneli</h1>
+    <a href="/dashboard">← {{ t["dashboard"] }}</a>
+    <h3>Kullanıcı Listesi</h3>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Kullanıcı Adı</th>
+            <th>Rol</th>
+            <th>İşlem</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user[0] }}</td>
+            <td>{{ user[1] }}</td>
+            <td>{{ user[3] }}</td>
+            <td>
+                {% if user[1] != "admin" %}
+                <form method="post" action="/admin/sil" style="display:inline;">
+                    <input type="hidden" name="user_id" value="{{ user[0] }}">
+                    <input type="submit" value="Sil">
+                </form>
+                {% else %}
+                (Yönetici)
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br><br>
+    <a href="/lang?set=tr">🇹🇷 Türkçe</a> | <a href="/lang?set=en">🇬🇧 English</a>
+  <script src="/static/js/alerts.js"></script>
+</body>
+</html>

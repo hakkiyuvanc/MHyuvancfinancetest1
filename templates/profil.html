@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profil - MH YUVANC FINANCE</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <h1>Profil Ayarları</h1>
+    <a href="/dashboard">← {{ t["dashboard"] }}</a>
+
+    <h3>Şifre Değiştir</h3>
+    <form method="post" action="/profil/sifre">
+        <label>Yeni Şifre:</label><br>
+        <input type="password" name="new_password" required><br><br>
+        <input type="submit" value="Şifreyi Güncelle">
+    </form>
+
+    <h3>Hesabı Sil</h3>
+    <form method="post" action="/profil/sil">
+        <p>Bu işlem geri alınamaz. Emin misiniz?</p>
+        <input type="submit" value="Hesabı Sil" style="color:red;">
+    </form>
+
+    <br><br>
+    <a href="/lang?set=tr">🇹🇷 Türkçe</a> | <a href="/lang?set=en">🇬🇧 English</a>
+  <script src="/static/js/alerts.js"></script>
+</body>
+</html>

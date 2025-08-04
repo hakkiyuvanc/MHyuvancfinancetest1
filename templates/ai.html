@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ t["ai_analysis"] }} - MH YUVANC FINANCE</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <h1>{{ t["ai_analysis"] }}</h1>
+    <a href="/dashboard">← {{ t["dashboard"] }}</a>
+
+    <section>
+        <h3>Önerilen Finansal Aksiyonlar</h3>
+        <ul>
+            <li>Giderlerde %15 azaltma potansiyeli</li>
+            <li>Nakit akışı dengesi için tahsilat süresi kısaltılmalı</li>
+            <li>En çok harcama yapılan kategori: Yazılım Hizmetleri</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Risk Skoru: <span style="color: red;">Yüksek</span></h3>
+        <p>Öneri: Fazla borçlanmadan kaçınılmalı ve sabit giderler kontrol altına alınmalı.</p>
+    </section>
+
+    <section>
+        <h3>Analiz Sonucu Grafiği</h3>
+        <img src="/static/images/ai_chart.png" alt="AI Analiz Grafiği" width="500">
+    </section>
+
+    <br><br>
+    <a href="/lang?set=tr">🇹🇷 Türkçe</a> | <a href="/lang?set=en">🇬🇧 English</a>
+  <script src="/static/js/alerts.js"></script>
+</body>
+</html>

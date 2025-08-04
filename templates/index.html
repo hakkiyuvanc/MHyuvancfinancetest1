@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ t["welcome"] if t and "welcome" in t else "Hoş Geldiniz" }} - MH YUVANC FINANCE</title>
+</head>
+<body>
+    <h1>{{ t["welcome"] if t and "welcome" in t else "Hoş Geldiniz" }}</h1>
+    <p>Bu sistem çoklu dil desteklidir.</p>
+    <a href="/login">{{ t["login"] if t and "login" in t else "Giriş" }}</a> |
+    <a href="/register">{{ t["register"] if t and "register" in t else "Kayıt Ol" }}</a>
+    <br><br>
+    <a href="/lang?set=tr">🇹🇷 Türkçe</a> | <a href="/lang?set=en">🇬🇧 English</a>
+  <script src="/static/js/alerts.js"></script>
+</body>
+</html>

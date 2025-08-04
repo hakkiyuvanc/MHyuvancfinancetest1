@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kayıt Ol - MH YUVANC FINANCE</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <h2>Yeni Kullanıcı Kaydı</h2>
+    <form action="/register" method="post">
+        <label for="username">Kullanıcı Adı:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="password">Şifre:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <input type="submit" value="Kayıt Ol">
+    </form>
+    <br>
+    <a href="/login">Zaten hesabınız var mı? Giriş yap</a>
+  <script src="/static/js/alerts.js"></script>
+</body>
+</html>

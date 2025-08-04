@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ t["dashboard"] }} - MH YUVANC FINANCE</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <h1>{{ t["dashboard"] }}</h1>
+    <nav>
+        <ul>
+            <li><a href="/fatura">{{ t["invoices"] }}</a></li>
+            <li><a href="/rapor">{{ t["reports"] }}</a></li>
+            <li><a href="/ai">{{ t["ai_analysis"] }}</a></li>
+            <li><a href="/admin">Admin Paneli</a></li>
+            <li><a href="/profil">Profil</a></li>
+            <li><a href="/logout">{{ t["logout"] }}</a></li>
+        </ul>
+    </nav>
+    <br>
+    <a href="/lang?set=tr">🇹🇷 Türkçe</a> | <a href="/lang?set=en">🇬🇧 English</a>
+  <script src="/static/js/alerts.js"></script>
+</body>
+</html>

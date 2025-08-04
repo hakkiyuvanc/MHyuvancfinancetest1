@@ -1,0 +1,15 @@
+{
+    "login_title": "Giriş Yap",
+    "email_placeholder": "E-posta",
+    "password_placeholder": "Şifre",
+    "login_button": "Giriş Yap",
+    "dashboard_title": "Gösterge Paneli",
+    "income_label": "Gelir",
+    "expense_label": "Gider",
+    "net_label": "Net",
+    "chart_title": "Gelir/Gider Zaman Serisi",
+    "ai_summary": "AI Özet",
+    "ai_panel_title": "AI Destekli Finansal Analiz",
+    "add_invoice": "Fatura Ekle",
+    "invoice_list": "Fatura Listesi"
+}

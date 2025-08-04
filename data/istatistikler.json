@@ -1,0 +1,40 @@
+{
+    "genel": {
+        "toplam_gelir": 87500,
+        "toplam_gider": 65200,
+        "net_kar": 22300,
+        "ortalama_gider": 13040
+    },
+    "uyari_seviyeleri": {
+        "bakiye_durumu": "normal",
+        "gider_artisi": "orta",
+        "vergi_riski": "düşük"
+    },
+    "aylik_trend": [
+        {
+            "ay": "Şubat",
+            "gelir": 15000,
+            "gider": 10000
+        },
+        {
+            "ay": "Mart",
+            "gelir": 18000,
+            "gider": 14000
+        },
+        {
+            "ay": "Nisan",
+            "gelir": 22000,
+            "gider": 18000
+        },
+        {
+            "ay": "Mayıs",
+            "gelir": 16000,
+            "gider": 12000
+        },
+        {
+            "ay": "Haziran",
+            "gelir": 16500,
+            "gider": 11200
+        }
+    ]
+}

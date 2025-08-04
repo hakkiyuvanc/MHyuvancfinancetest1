@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>GPT Finans Asistanı</title>
+</head>
+<body>
+  <h1>Veri Gönder</h1>
+  <textarea id="inputData" rows="10" cols="50">[{"kategori": "Gelir", "miktar": 1000}, {"kategori": "Gider", "miktar": 800}]</textarea><br>
+  <button onclick="gonder()">Gönder</button>
+  <pre id="sonuc"></pre>
+<script>
+function gonder() {
+  const data = JSON.parse(document.getElementById('inputData').value);
+  fetch("/analyze", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(data)
+  }).then(res => res.json()).then(json => {
+    document.getElementById("sonuc").innerText = JSON.stringify(json, null, 2);
+  });
+}
+</script>
+</body>
+</html>

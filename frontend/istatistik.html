@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>📊 İstatistik Paneli</title>
+</head>
+<body>
+  <h2>📊 İstatistik Paneli</h2>
+  <div id="stats">
+    <p>Yükleniyor...</p>
+  </div>
+
+  <script>
+    const token = localStorage.getItem("access_token");
+
+    async function loadStats() {
+      const res = await fetch("/stats", {
+        headers: {
+          "Authorization": "Bearer " + token
+        }
+      });
+      const data = await res.json();
+
+      const statsDiv = document.getElementById("stats");
+      statsDiv.innerHTML = `
+        <ul>
+          <li>🧾 Toplam Fatura Sayısı: <strong>${data.fatura_sayisi}</strong></li>
+          <li>💰 Toplam Gelir (KDV hariç): <strong>${data.toplam_gelir} TL</strong></li>
+          <li>📈 Toplam KDV: <strong>${data.toplam_kdv} TL</strong></li>
+          <li>👤 En Çok Fatura Kesilen Müşteri: <strong>${data.en_cok_fatura_kesilen_musteri || "Yok"}</strong></li>
+          <li>🔢 Bu Müşteriye Kesilen Fatura Sayısı: <strong>${data.fatura_sayisi_bu_musteri}</strong></li>
+        </ul>
+      `;
+    }
+
+    loadStats();
+  </script>
+
+<hr>
+<h3>GPT-4 Finansal Analiz</h3>
+<textarea id="prompt" rows="4" cols="60" placeholder="Analiz için mesajınızı yazın..."></textarea><br>
+<button onclick="sendToGPT()">Analiz Et</button>
+<pre id="result"></pre>
+
+<script>
+  async function sendToGPT() {
+    const prompt = document.getElementById('prompt').value;
+    const resultArea = document.getElementById('result');
+    resultArea.innerText = "Yükleniyor...";
+
+    try {
+      const response = await fetch('/ai/analyze', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt })
+      });
+      const data = await response.json();
+      resultArea.innerText = data.result || data.error || "Yanıt alınamadı.";
+    } catch (error) {
+      resultArea.innerText = "Hata: " + error;
+    }
+  }
+</script>
+
+
+<hr>
+<a href="/frontend/chat.html" style="text-decoration:none;">
+  <button style="padding: 8px 12px; background-color: #007bff; color: white; border: none; border-radius: 4px;">
+    🤖 GPT Sohbet Asistanı
+  </button>
+</a>
+
+</body>
+</html>

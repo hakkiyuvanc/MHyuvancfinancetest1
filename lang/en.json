@@ -1,0 +1,13 @@
+{
+  "welcome": "Welcome",
+  "login": "Login",
+  "register": "Register",
+  "dashboard": "Dashboard",
+  "logout": "Logout",
+  "invoices": "Invoices",
+  "reports": "Reports",
+  "ai_analysis": "AI Analysis",
+  "export_pdf": "Export as PDF",
+  "export_excel": "Export as Excel",
+  "change_lang": "Change Language"
+}

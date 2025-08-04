@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>GPT Sohbet Asistanı</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    #chat-box { border: 1px solid #ccc; padding: 10px; height: 400px; overflow-y: scroll; margin-bottom: 10px; }
+    .user { color: blue; }
+    .assistant { color: green; }
+    textarea { width: 100%; height: 80px; }
+  </style>
+</head>
+<body>
+  <h2>GPT-4 Sohbet Asistanı</h2>
+  <div id="chat-box"></div>
+  <textarea id="user-input" placeholder="Mesajınızı yazın..."></textarea><br>
+  <button onclick="sendMessage()">Gönder</button>
+
+  <script>
+    let messages = [];
+
+    async function sendMessage() {
+      const input = document.getElementById("user-input");
+      const chatBox = document.getElementById("chat-box");
+      const userMessage = input.value.trim();
+      if (!userMessage) return;
+
+      messages.push({ role: "user", content: userMessage });
+      input.value = "";
+      updateChat();
+
+      const res = await fetch("/ai/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages })
+      });
+
+      const data = await res.json();
+      if (data.result) {
+        messages.push({ role: "assistant", content: data.result });
+        updateChat();
+      } else {
+        messages.push({ role: "assistant", content: "⚠️ Yanıt alınamadı." });
+        updateChat();
+      }
+    }
+
+    function updateChat() {
+      const chatBox = document.getElementById("chat-box");
+      chatBox.innerHTML = messages.map(m =>
+        `<div class="\${m.role}"><strong>\${m.role === 'user' ? '👤 Sen' : '🤖 GPT'}:</strong> \${m.content}</div>`
+      ).join("");
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  </script>
+</body>
+</html>

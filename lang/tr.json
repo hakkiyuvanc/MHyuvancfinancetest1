@@ -1,0 +1,13 @@
+{
+  "welcome": "Hoş Geldiniz",
+  "login": "Giriş Yap",
+  "register": "Kayıt Ol",
+  "dashboard": "Kontrol Paneli",
+  "logout": "Çıkış",
+  "invoices": "Faturalar",
+  "reports": "Raporlar",
+  "ai_analysis": "AI Analiz",
+  "export_pdf": "PDF Dışa Aktar",
+  "export_excel": "Excel Dışa Aktar",
+  "change_lang": "Dili Değiştir"
+}

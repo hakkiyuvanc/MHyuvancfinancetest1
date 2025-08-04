@@ -1,0 +1,15 @@
+{
+    "login_title": "Login",
+    "email_placeholder": "Email",
+    "password_placeholder": "Password",
+    "login_button": "Login",
+    "dashboard_title": "Dashboard",
+    "income_label": "Income",
+    "expense_label": "Expense",
+    "net_label": "Net",
+    "chart_title": "Income/Expense Time Series",
+    "ai_summary": "AI Summary",
+    "ai_panel_title": "AI Powered Financial Analysis",
+    "add_invoice": "Add Invoice",
+    "invoice_list": "Invoice List"
+}

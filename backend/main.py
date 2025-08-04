@@ -53,10 +53,13 @@ def dashboard(request: Request):
 
 @app.get("/fatura", response_class=HTMLResponse)
 def fatura_page(request: Request):
-    if not request.session.get("user"):
-        return RedirectResponse(url="/login", status_code=302)
-    return templates.TemplateResponse("fatura.html", {"request": request})
-
+    return templates.TemplateResponse("fatura.html", {
+        "request": request,
+        "t": {
+            "invoices": "Faturalar"
+        }
+    })
+    
 @app.post("/fatura/ekle")
 def fatura_ekle(tarih: str = Form(...), fatura_no: str = Form(...), musteri: str = Form(...), tutar: float = Form(...)):
     print(f"Yeni Fatura: {tarih}, {fatura_no}, {musteri}, {tutar} ₺")  # Simülasyon
@@ -64,16 +67,21 @@ def fatura_ekle(tarih: str = Form(...), fatura_no: str = Form(...), musteri: str
 
 @app.get("/rapor", response_class=HTMLResponse)
 def rapor_page(request: Request):
-    if not request.session.get("user"):
-        return RedirectResponse(url="/login", status_code=302)
-    return templates.TemplateResponse("rapor.html", {"request": request})
-
+    return templates.TemplateResponse("rapor.html", {
+        "request": request,
+        "t": {
+            "reports": "Raporlar"
+        }
+    })
 @app.get("/ai", response_class=HTMLResponse)
 def ai_page(request: Request):
-    if not request.session.get("user"):
-        return RedirectResponse(url="/login", status_code=302)
-    return templates.TemplateResponse("ai.html", {"request": request})
-
+    return templates.TemplateResponse("ai.html", {
+        "request": request,
+        "t": {
+            "ai_analysis": "AI Analizi"
+        }
+    })
+    
 @app.get("/logout")
 def logout(request: Request):
     request.session.clear()

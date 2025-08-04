@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<link href="/styles/global.css" rel="stylesheet"/>
+<meta charset="utf-8"/>
+<title>Fatura Detayı</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="manifest.json" rel="manifest"/></head>
+<body style="font-family:sans-serif;max-width:600px;margin:40px auto;">
+<nav>
+<a href="index.html">Anasayfa</a> |
+          <a href="fatura.html">Faturalar</a> |
+          <a href="raporlar.html">Raporlar</a> |
+          <a href="profil.html">Profil</a> |
+          <a href="logout.html">Çıkış</a>
+</nav>
+<h2>📄 Fatura Detayı</h2>
+<div id="faturaDetay"></div>
+<br/>
+<button onclick="window.history.back()">⬅️ Geri Dön</button>
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    const detayData = {
+      "123": {
+        ad: "Fatura #123",
+        tarih: "2024-06-01",
+        tutar: 2500,
+        kdv: 450,
+        dosya: "ornek.pdf"
+      },
+      "124": {
+        ad: "Fatura #124",
+        tarih: "2024-06-05",
+        tutar: 4800,
+        kdv: 864,
+        dosya: "fatura124.pdf"
+      }
+    };
+
+    const detay = detayData[id];
+    const div = document.getElementById("faturaDetay");
+
+    if (detay) {
+      div.innerHTML = `
+        <p><strong>Ad:</strong> ${detay.ad}</p>
+        <p><strong>Tarih:</strong> ${detay.tarih}</p>
+        <p><strong>Tutar:</strong> ${detay.tutar} ₺</p>
+        <p><strong>KDV:</strong> ${detay.kdv} ₺</p>
+        <p><strong>Toplam:</strong> ${detay.tutar + detay.kdv} ₺</p>
+        <p><strong>Dosya:</strong> <a href="/fatura_dosyalar/${detay.dosya}" target="_blank">${detay.dosya}</a></p>
+      `;
+    } else {
+      div.innerHTML = "<p>Fatura bulunamadı.</p>";
+    }
+  </script>
+<script src="lang.js"></script>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("service-worker.js")
+        .then(reg => console.log("SW kayıtlı:", reg.scope))
+        .catch(err => console.error("SW hatası:", err));
+    });
+  }
+</script>
+
+<section class="card">
+<h3>📎 Dosya Ekle</h3>
+<form action="/api/upload" enctype="multipart/form-data" id="uploadForm" method="post">
+<input name="fatura_id" type="hidden" value="1234"/>
+<input accept=".jpg,.png,.pdf" name="dosya" required="" type="file"/>
+<button type="submit">📤 Yükle</button>
+</form>
+</section>
+</body>
+</html>

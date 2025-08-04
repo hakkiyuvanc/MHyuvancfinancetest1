@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<title>Gelir Gider Paneli</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<link href="yardim.css" rel="stylesheet"/><link href="manifest.json" rel="manifest"/></head>
+<body>
+<nav>
+<a href="index.html">Anasayfa</a> |
+          <a href="fatura.html">Faturalar</a> |
+          <a href="raporlar.html">Raporlar</a> |
+          <a href="profil.html">Profil</a> |
+          <a href="logout.html">Çıkış</a>
+</nav>
+<h2>📊 Gelir-Gider Paneli</h2>
+<div>
+<input id="gelirTutar" placeholder="Gelir Tutarı" type="number"/>
+<select id="gelirKategori">
+<option value="Satış">Satış</option>
+<option value="Yatırım">Yatırım</option>
+<option value="Diğer">Diğer</option>
+</select>
+<button onclick="ekleGelir()">Gelir Ekle</button>
+</div>
+<div>
+<input id="giderTutar" placeholder="Gider Tutarı" type="number"/>
+<select id="giderKategori">
+<option value="Kira">Kira</option>
+<option value="Maaş">Maaş</option>
+<option value="Ofis Gideri">Ofis Gideri</option>
+<option value="Diğer">Diğer</option>
+</select>
+<button onclick="ekleGider()">Gider Ekle</button>
+</div>
+<div style="margin-top: 10px;">
+<label>Başlangıç Tarihi:</label>
+<input id="baslangicTarih" type="date"/>
+<label>Bitiş Tarihi:</label>
+<input id="bitisTarih" type="date"/>
+<button onclick="filtreleTariheGore()">Filtrele</button>
+</div>
+<canvas height="200" id="chart" width="400"></canvas>
+<hr/>
+<h4>Kategori Bazlı Dağılım</h4>
+<canvas height="200" id="kategoriChart" width="400"></canvas>
+<button onclick="indirPDF()">📄 PDF Olarak İndir</button>
+<div style="margin-top:10px;">
+<input id="emailAdres" placeholder="E-posta adresinizi girin" type="email"/>
+<button onclick="pdfGonder()">📧 Mail Gönder</button>
+</div>
+<button onclick="runAIAnalysis()">🧠 AI ile Analiz Et</button>
+<div id="aiSonuc" style="border:1px solid #ccc; padding:10px; margin-top:10px;"></div>
+<div>
+<button onclick="setLang('tr')">🇹🇷 TR</button>
+<button onclick="setLang('en')">🇬🇧 EN</button>
+</div>
+<script src="public/js/lang.js"></script>
+<script src="public/js/gelirgider.js"></script>
+<script src="yardim.js"></script><script src="lang.js"></script>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("service-worker.js")
+        .then(reg => console.log("SW kayıtlı:", reg.scope))
+        .catch(err => console.error("SW hatası:", err));
+    });
+  }
+</script>
+</body>
+</html>
+<hr/>
+<h4>🧾 Fatura Oluştur</h4>
+<form id="faturaForm">
+<input id="musteri" placeholder="Müşteri Adı" required="" type="text"/>
+<input id="urun" placeholder="Ürün Adı" required="" type="text"/>
+<input id="adet" placeholder="Adet" required="" type="number"/>
+<input id="fiyat" placeholder="Birim Fiyat" required="" type="number"/>
+<button onclick="faturaPDF()" type="button">📄 Faturayı PDF Olarak İndir</button>
+</form>

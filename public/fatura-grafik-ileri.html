@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<title>Fatura Grafik Analizi</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="style.css" rel="stylesheet"/>
+<link href="manifest.json" rel="manifest"/></head>
+<body>
+<nav>
+<a href="index.html">Anasayfa</a> |
+          <a href="fatura.html">Faturalar</a> |
+          <a href="raporlar.html">Raporlar</a> |
+          <a href="profil.html">Profil</a> |
+          <a href="logout.html">Çıkış</a>
+</nav>
+<header><h1>📊 Fatura Grafik Analizi</h1></header>
+<main class="container">
+<section class="card">
+<h2>📅 Aylık Gelir-Gider Dağılımı</h2>
+<canvas height="200" id="aylikChart"></canvas>
+</section>
+<section class="card">
+<h2>🏷️ Kategori Bazlı Fatura Dağılımı</h2>
+<canvas height="200" id="kategoriChart"></canvas>
+</section>
+<section class="card">
+<h2>🧠 AI Yorum</h2>
+<p id="aiYorum">Veriler analiz ediliyor...</p>
+</section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="fatura_grafik_ileri.js?v2"></script>
+<script src="lang.js"></script>
+
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("service-worker.js")
+        .then(reg => console.log("SW kayıtlı:", reg.scope))
+        .catch(err => console.error("SW hatası:", err));
+    });
+  }
+</script>
+</body>
+</html>

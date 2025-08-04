@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Ali Kaya",
+    "email": "ali.kaya@example.com",
+    "phone": "+90 532 123 45 67",
+    "company": "Kaya İnşaat"
+  },
+  {
+    "id": 2,
+    "name": "Ayşe Demir",
+    "email": "ayse.demir@example.com",
+    "phone": "+90 544 987 65 43",
+    "company": "Demir Yazılım"
+  },
+  {
+    "id": 3,
+    "name": "Mehmet Yıldız",
+    "email": "mehmet.yildiz@example.com",
+    "phone": "+90 533 456 78 90",
+    "company": "Yıldız Gıda"
+  }
+]

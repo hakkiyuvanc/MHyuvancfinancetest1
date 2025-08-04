@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<title>Çıkış Yapıldı | KOBİ Paneli</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="public/styles.css" rel="stylesheet"/>
+<script defer="" src="public/app.js"></script>
+<script defer="">
+    document.addEventListener("DOMContentLoaded", () => {
+      clearSession();
+      setTimeout(() => { window.location.href = "login.html"; }, 1500);
+    });
+  </script>
+<link href="manifest.json" rel="manifest"/></head>
+<body>
+<nav>
+<a href="index.html">Anasayfa</a> |
+          <a href="fatura.html">Faturalar</a> |
+          <a href="raporlar.html">Raporlar</a> |
+          <a href="profil.html">Profil</a> |
+          <a href="logout.html">Çıkış</a>
+</nav>
+<header>
+<h1>👋 Güle güle!</h1>
+</header>
+<main>
+<section>
+<p>Oturumunuz sonlandırıldı. Giriş sayfasına yönlendiriliyorsunuz...</p>
+</section>
+</main>
+<footer>
+<p>© 2025 KOBİ Finans Paneli</p>
+</footer>
+<script src="lang.js"></script>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("service-worker.js")
+        .then(reg => console.log("SW kayıtlı:", reg.scope))
+        .catch(err => console.error("SW hatası:", err));
+    });
+  }
+</script>
+</body>
+</html>

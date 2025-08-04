@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<title>Müşteriler | KOBİ Paneli</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="public/styles.css" rel="stylesheet"/>
+<link href="manifest.json" rel="manifest"/></head>
+<body>
+<script>
+    const user = JSON.parse(localStorage.getItem("currentUser"));
+    if (!user || !['admin', 'accountant']?.includes(user.role)) {
+      alert("Bu sayfaya erişim izniniz yok.");
+      window.location.href = "login.html";
+    }
+    window.addEventListener("DOMContentLoaded", () => {
+      const badge = document.getElementById("userBadge");
+      if (badge && user) {
+        badge.innerText = "👤 " + user.username + " [" + user.role + "]";
+      }
+    });
+  </script>
+<header>
+<h1>👥 Müşteri Listesi</h1>
+<nav>
+<a href="index.html">Anasayfa</a>
+<a href="raporlar.html">Raporlar</a>
+<a class="aktif" href="musteriler.html">Müşteriler</a>
+</nav>
+</header>
+<main>
+<div class="card" id="notificationBox" style="margin: 20px;">
+<h3>🔔 Bildirimler <span id="notificationBadge">🔔</span></h3>
+<div class="notification-list" id="notificationList"></div>
+</div>
+<section>
+<input class="full-width" id="search" placeholder="Müşteri ara..." style="margin: 10px 0;" type="text"/>
+<table class="styled-table" id="customerTable">
+<thead>
+<tr>
+<th>Ad</th>
+<th>E-Posta</th>
+<th>Telefon</th>
+<th>Şirket</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+</section>
+</main>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const tbody = document.querySelector("#customerTable tbody");
+      const search = document.getElementById("search");
+
+      fetch("public/api/customers.json")
+        .then(res => res.json())
+        .then(data => {
+          renderTable(data);
+
+          // Arama filtresi
+          search.addEventListener("input", (e) => {
+            const val = e.target.value.toLowerCase();
+            const filtered = data.filter(c =>
+              c.name.toLowerCase().includes(val) ||
+              c.company.toLowerCase().includes(val) ||
+              c.email.toLowerCase().includes(val)
+            );
+            renderTable(filtered);
+          });
+        });
+
+      function renderTable(customers) {
+        tbody.innerHTML = "";
+        customers.forEach(c => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${c.name}</td>
+            <td>${c.email}</td>
+            <td>${c.phone}</td>
+            <td>${c.company}</td>
+          `;
+          tbody.appendChild(row);
+        });
+      }
+    });
+  </script>
+<footer>
+<p>© 2025 KOBİ Finans Paneli</p>
+</footer>
+<script src="public/js/bildirim.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    addNotification("📢 Sayfa yüklendi: musteriler");
+    renderNotifications();
+  });
+</script>
+<script src="lang.js"></script>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("service-worker.js")
+        .then(reg => console.log("SW kayıtlı:", reg.scope))
+        .catch(err => console.error("SW hatası:", err));
+    });
+  }
+</script>
+</body>
+</html>

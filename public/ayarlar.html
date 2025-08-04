@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ayarlar Paneli</title>
+</head>
+<body>
+  <h1>Ayarlar</h1>
+
+  <h3>Tema Seçimi</h3>
+  <button onclick="setTheme('light')">Açık Tema</button>
+  <button onclick="setTheme('dark')">Koyu Tema</button>
+
+  <h3>Dil Seçimi</h3>
+  <button class="lang-btn" data-lang="tr">🇹🇷 Türkçe</button>
+  <button class="lang-btn" data-lang="en">🇬🇧 English</button>
+
+  <h3>Şifre Değiştir</h3>
+  <form id="passwordForm">
+    <input type="password" placeholder="Eski Şifre" name="old_password" required><br>
+    <input type="password" placeholder="Yeni Şifre" name="new_password" required><br>
+    <button type="submit">Değiştir</button>
+  </form>
+
+  <p id="result"></p>
+
+  <script src="/static/lang.js"></script>
+  <script src="/static/ayarlar.js"></script>
+</body>
+</html>

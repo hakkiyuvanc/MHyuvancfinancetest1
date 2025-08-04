@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<title>Admin Paneli – Kullanıcı Yönetimi</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="style.css" rel="stylesheet"/>
+<link href="yardim.css" rel="stylesheet"/><link href="manifest.json" rel="manifest"/></head>
+<body>
+<nav>
+<a href="index.html">Anasayfa</a> |
+          <a href="fatura.html">Faturalar</a> |
+          <a href="raporlar.html">Raporlar</a> |
+          <a href="profil.html">Profil</a> |
+          <a href="logout.html">Çıkış</a>
+</nav>
+<header>
+<h1>🧑‍💼 Kullanıcı Yönetimi</h1>
+</header>
+<main class="container">
+<section class="card">
+<h2>📋 Kayıtlı Kullanıcılar</h2>
+<table id="userTable">
+<thead>
+<tr><th>Ad</th><th>E-posta</th><th>Rol</th><th>İşlem</th></tr>
+</thead>
+<tbody>
+<!-- Kullanıcılar buraya gelecek -->
+</tbody>
+</table>
+</section>
+<section class="card">
+<h2>➕ Yeni Kullanıcı Ekle</h2>
+<form id="addUserForm">
+<input id="newName" placeholder="Ad Soyad" required="" type="text"/><br/>
+<input id="newEmail" placeholder="E-posta" required="" type="email"/><br/>
+<select id="newRole">
+<option value="admin">Admin</option>
+<option value="muhasebeci">Muhasebeci</option>
+<option value="görüntüleyici">Görüntüleyici</option>
+</select><br/>
+<button type="submit">Kaydet</button>
+</form>
+</section>
+</main>
+<script src="admin.js"></script>
+<script src="lang.js"></script>
+<script src="yardim.js"></script>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("service-worker.js")
+        .then(reg => console.log("SW kayıtlı:", reg.scope))
+        .catch(err => console.error("SW hatası:", err));
+    });
+  }
+</script>
+</body>
+</html>

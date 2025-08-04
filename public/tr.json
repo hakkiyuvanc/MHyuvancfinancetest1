@@ -1,0 +1,13 @@
+{
+  "login": "Giriş Yap",
+  "logout": "Çıkış Yap",
+  "username": "Kullanıcı Adı",
+  "password": "Şifre",
+  "submit": "Gönder",
+  "dashboard": "Gösterge Paneli",
+  "invoices": "Faturalar",
+  "export_csv": "CSV İndir",
+  "export_pdf": "PDF İndir",
+  "ai_summary": "AI Özeti",
+  "settings": "Ayarlar"
+}

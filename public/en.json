@@ -1,0 +1,13 @@
+{
+  "login": "Login",
+  "logout": "Logout",
+  "username": "Username",
+  "password": "Password",
+  "submit": "Submit",
+  "dashboard": "Dashboard",
+  "invoices": "Invoices",
+  "export_csv": "Export CSV",
+  "export_pdf": "Export PDF",
+  "ai_summary": "AI Summary",
+  "settings": "Settings"
+}

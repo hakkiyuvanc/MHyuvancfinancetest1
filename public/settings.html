@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<title>Ayarlar – KOBİ AI</title>
+<link href="style.css" rel="stylesheet"/>
+<link href="manifest.json" rel="manifest"/></head>
+<body class="light">
+<nav>
+<a href="index.html">Anasayfa</a> |
+          <a href="fatura.html">Faturalar</a> |
+          <a href="raporlar.html">Raporlar</a> |
+          <a href="profil.html">Profil</a> |
+          <a href="logout.html">Çıkış</a>
+</nav>
+<header>
+<h1>⚙️ Ayarlar</h1>
+</header>
+<main class="container">
+<section class="card">
+<h2>👤 Kullanıcı Bilgileri</h2>
+<p><strong>Ad:</strong> <span id="username">Yükleniyor...</span></p>
+<p><strong>E-posta:</strong> <span id="useremail">Yükleniyor...</span></p>
+</section>
+<section class="card">
+<h2>🌍 Dil Seçimi</h2>
+<select id="languageSelect">
+<option value="tr">Türkçe</option>
+<option value="en">English</option>
+</select>
+</section>
+<section class="card">
+<h2>🎨 Tema</h2>
+<select id="themeSelect">
+<option value="light">Açık</option>
+<option value="dark">Koyu</option>
+</select>
+</section>
+<section class="card">
+<h2>🔐 Şifre Değiştir</h2>
+<form id="changePasswordForm">
+<input placeholder="Eski Şifre" required="" type="password"/><br/>
+<input placeholder="Yeni Şifre" required="" type="password"/><br/>
+<button type="submit">Güncelle</button>
+</form>
+</section>
+</main>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const username = localStorage.getItem("username") || "Demo Kullanıcı";
+      const email = localStorage.getItem("email") || "demo@kobi.com";
+      document.getElementById("username").textContent = username;
+      document.getElementById("useremail").textContent = email;
+
+      document.getElementById("themeSelect").addEventListener("change", (e) => {
+        document.body.className = e.target.value;
+      });
+
+      document.getElementById("languageSelect").addEventListener("change", (e) => {
+        localStorage.setItem("lang", e.target.value);
+        alert("Sayfa yeniden yüklenecek...");
+        location.reload();
+      });
+
+      document.getElementById("changePasswordForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        alert("Şifre başarıyla güncellendi (demo)!");
+      });
+    });
+  </script>
+<script src="lang.js"></script>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("service-worker.js")
+        .then(reg => console.log("SW kayıtlı:", reg.scope))
+        .catch(err => console.error("SW hatası:", err));
+    });
+  }
+</script>
+</body>
+</html>

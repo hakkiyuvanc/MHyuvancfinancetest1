@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<title data-i18n="welcome">KOBİ Finans Paneli</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="public/styles.css" rel="stylesheet"/>
+<script src="public/lang.js"></script>
+<script defer="" src="public/app.js"></script>
+<script defer="">
+    // Çoklu dil desteği
+    document.addEventListener("DOMContentLoaded", () => {
+      const langToggle = document.getElementById("langToggle");
+      const getLang = () => localStorage.getItem("lang") || "tr";
+      const setLang = (lang) => localStorage.setItem("lang", lang);
+
+      const updateTexts = () => {
+        const lang = getLang();
+        const dict = LANGUAGES[lang];
+        document.querySelectorAll("[data-i18n]").forEach(el => {
+          const key = el.getAttribute("data-i18n");
+          if (dict[key]) el.textContent = dict[key];
+        });
+        langToggle.textContent = dict.language;
+      };
+
+      langToggle.addEventListener("click", () => {
+        const current = getLang();
+        const next = current === "tr" ? "en" : "tr";
+        setLang(next);
+        updateTexts();
+      });
+
+      updateTexts();
+    });
+  </script>
+<link href="yardim.css" rel="stylesheet"/><link href="manifest.json" rel="manifest"/></head>
+<body>
+<script>
+    const user = JSON.parse(localStorage.getItem("currentUser"));
+    if (!user || !['admin', 'accountant', 'viewer']?.includes(user.role)) {
+      alert("Bu sayfaya erişim izniniz yok.");
+      window.location.href = "login.html";
+    }
+    window.addEventListener("DOMContentLoaded", () => {
+      const badge = document.getElementById("userBadge");
+      if (badge && user) {
+        badge.innerText = "👤 " + user.username + " [" + user.role + "]";
+      }
+    });
+  </script>
+<header>
+<h1 data-i18n="welcome">KOBİ Finans Paneline Hoş Geldiniz</h1>
+<p data-i18n="intro">Bu panel, gelir-gider takibi, raporlama ve müşteri yönetimi için tasarlandı.</p>
+<nav>
+<a class="aktif" data-i18n="welcome" href="index.html">Anasayfa</a>
+<a data-i18n="reports" href="raporlar.html">Raporlar</a>
+<a data-i18n="customers" href="musteriler.html">Müşteriler</a>
+<a data-i18n="admin" href="admin.html" id="adminNav">Admin</a>
+<button id="langToggle" style="margin-left:20px;">🌐 Dil: Türkçe</button>
+<a href="settings.html">⚙️ Ayarlar</a>
+</nav>
+<div class="user-badge" id="userBadge"></div>
+</header>
+<main>
+<div class="card" id="notificationBox" style="margin: 20px;">
+<h3>🔔 Bildirimler <span id="notificationBadge">🔔</span></h3>
+<div class="notification-list" id="notificationList"></div>
+</div>
+<section>
+<img alt="Kapak görseli" src="public/images/cover_kobi_finans_mockup.png"/>
+</section>
+<section>
+<img alt="Fiyatlandırma" src="public/images/pricing_kobi_finans_mockup.png"/>
+</section>
+<section>
+<img alt="Özellikler" src="public/images/A_2D_digital_infographic_showcases_six_key_feature.png"/>
+</section>
+<section>
+<h2 data-i18n="reports">Raporlar</h2>
+<img alt="Rapor modülü" src="public/images/reports_module_mockup.png"/>
+</section>
+</main>
+<footer>
+<p data-i18n="footer">© 2025 KOBİ Finans Paneli</p>
+</footer>
+<script src="public/js/bildirim.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    addNotification("📢 Yeni kullanıcı giriş yaptı.");
+    renderNotifications();
+  });
+</script>
+<script src="yardim.js"></script><script src="lang.js"></script>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("service-worker.js")
+        .then(reg => console.log("SW kayıtlı:", reg.scope))
+        .catch(err => console.error("SW hatası:", err));
+    });
+  }
+</script>
+<div style="text-align:center;margin:40px;"><img src="images/dashboard_mockup.png" alt="Dashboard Görseli" style="max-width:100%;height:auto;border:2px solid #333;border-radius:8px;box-shadow:0 0 12px rgba(0,0,0,0.4);"/></div>
+</body>
+</html>

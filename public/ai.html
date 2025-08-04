@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Paneli</title>
+</head>
+<body>
+  <h2>Yapay Zeka Özetleme</h2>
+  <form id="ozetForm">
+    <textarea name="metin" rows="4" cols="50" placeholder="Metni girin..."></textarea><br>
+    <button type="submit">Özetle</button>
+  </form>
+  <p id="ozetSonuc"></p>
+
+  <h2>Gelir-Gider Tahmin</h2>
+  <form id="tahminForm">
+    Gelir: <input name="gelir" type="number"><br>
+    Gider: <input name="gider" type="number"><br>
+    <button type="submit">Tahmin Et</button>
+  </form>
+  <p id="tahminSonuc"></p>
+
+  <script src="/static/ai.js"></script>
+</body>
+</html>

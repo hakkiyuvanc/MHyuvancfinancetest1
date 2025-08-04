@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<title>Profil Yönetimi</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+<nav class="navbar">
+<ul>
+<li><a href="index.html">🏠 Anasayfa</a></li>
+<li><a href="gelirgider.html">💰 Gelir-Gider</a></li>
+<li><a href="fatura.html">📄 Faturalar</a></li>
+<li><a href="raporlar.html">📊 Raporlar</a></li>
+<li><a href="ai.html">🧠 AI Paneli</a></li>
+<li><a href="istatistik.html">📋 İstatistik</a></li>
+<li><a href="logs.html">📁 Log</a></li>
+<li><a href="profil.html">👤 Profil</a></li>
+<li><a href="yardim.html">🆘 Yardım</a></li>
+</ul>
+</nav>
+
+<main class="container">
+<h2>👤 Profil Bilgileri</h2>
+<form action="/api/profile/update" method="post">
+<label for="name">Ad Soyad:</label>
+<input name="name" required="" type="text"/>
+<label for="phone">Telefon:</label>
+<input name="phone" type="text"/>
+<label for="title">Unvan:</label>
+<input name="title" type="text"/>
+<button type="submit">💾 Güncelle</button>
+</form>
+<hr/>
+<h3>🔐 Şifre Değiştir</h3>
+<form action="/api/profile/change-password" method="post">
+<label for="old_password">Eski Şifre:</label>
+<input name="old_password" required="" type="password"/>
+<label for="new_password">Yeni Şifre:</label>
+<input name="new_password" required="" type="password"/>
+<button type="submit">🔁 Değiştir</button>
+</form>
+<hr/>
+<h3>🗑️ Hesabı Sil</h3>
+<form action="/api/profile/delete" method="post">
+<label for="confirm">Silmek için "SİL" yazınız:</label>
+<input name="confirm" required="" type="text"/>
+<button style="background-color:red;color:white;" type="submit">🚨 Hesabı Sil</button>
+</form>
+</main>
+</body>
+</html>

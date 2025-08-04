@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head><title>Giriş - Captcha</title></head>
+<body>
+  <h2>🔐 Güvenlik Kontrolü</h2>
+  <form onsubmit="return handleCaptcha(event)">
+    <label>3 + 5 = ?</label>
+    <input type="text" id="captchaInput" required />
+    <button type="submit">Doğrula</button>
+  </form>
+  <p id="result"></p>
+  <script>
+    function handleCaptcha(e) {
+      e.preventDefault();
+      const val = document.getElementById('captchaInput').value;
+      const result = document.getElementById('result');
+      if (val.trim() === "8") {
+        result.innerText = "✔️ Doğrulandı!";
+      } else {
+        result.innerText = "❌ Hatalı cevap!";
+      }
+    }
+  </script>
+</body>
+</html>

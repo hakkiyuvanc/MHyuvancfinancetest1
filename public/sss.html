@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<title>Sıkça Sorulan Sorular (SSS)</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="style.css" rel="stylesheet"/>
+<link href="manifest.json" rel="manifest"/></head>
+<body>
+<nav>
+<a href="index.html">Anasayfa</a> |
+          <a href="fatura.html">Faturalar</a> |
+          <a href="raporlar.html">Raporlar</a> |
+          <a href="profil.html">Profil</a> |
+          <a href="logout.html">Çıkış</a>
+</nav>
+<header>
+<h1>Sıkça Sorulan Sorular (SSS)</h1>
+</header>
+<main class="container">
+<section class="card">
+<h2>Sistem ücretsiz mi?</h2>
+<p>Evet, temel kullanım ücretsizdir. Gelişmiş AI analizleri için premium planlar ileride sunulabilir.</p>
+</section>
+<section class="card">
+<h2>Verilerim güvende mi?</h2>
+<p>Evet. Tüm veriler sadece size özel saklanır ve yapay zeka paneli dışında hiçbir yere gönderilmez.</p>
+</section>
+<section class="card">
+<h2>AI paneli ne işe yarar?</h2>
+<p>Gelir-gider verilerinize göre risk skorları ve ileriye dönük bütçe tahminleri üretir.</p>
+</section>
+<section class="card">
+<h2>Verilerimi nasıl dışa aktarabilirim?</h2>
+<p>Rapor sayfalarında “PDF Olarak İndir” ve “CSV Dışa Aktar” butonlarını kullanabilirsiniz.</p>
+</section>
+<section class="card">
+<h2>Mobil uyumlu mu?</h2>
+<p>Evet. Tüm sayfalar responsive tasarlanmıştır ve mobilde sorunsuz çalışır.</p>
+</section>
+<section class="card">
+<h2>Dil seçenekleri var mı?</h2>
+<p>TR ve EN dilleri desteklenmektedir. Sağ üstten değiştirilebilir.</p>
+</section>
+</main>
+<script src="lang.js"></script>
+
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("service-worker.js")
+        .then(reg => console.log("SW kayıtlı:", reg.scope))
+        .catch(err => console.error("SW hatası:", err));
+    });
+  }
+</script>
+</body>
+</html>

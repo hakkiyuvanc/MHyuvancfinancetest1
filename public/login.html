@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<title>KOBİ Giriş Paneli</title>
+<link href="manifest.json" rel="manifest"/></head>
+<body>
+<nav>
+<a href="index.html">Anasayfa</a> |
+          <a href="fatura.html">Faturalar</a> |
+          <a href="raporlar.html">Raporlar</a> |
+          <a href="profil.html">Profil</a> |
+          <a href="logout.html">Çıkış</a>
+</nav>
+<h2>Giriş Yap</h2>
+<form id="loginForm">
+<label for="username">Kullanıcı Adı</label>
+<input id="username" required="" type="text"/><br/>
+<label for="password">Şifre</label>
+<input id="password" required="" type="password"/><br/>
+<label for="role">Rol</label>
+<select id="role">
+<option value="admin">Admin</option>
+<option value="muhasebeci">Muhasebeci</option>
+<option value="goruntuleyici">Görüntüleyici</option>
+</select><br/>
+<button type="submit">Giriş</button>
+</form>
+<script>
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const user = document.getElementById("username").value;
+      const role = document.getElementById("role").value;
+      localStorage.setItem("currentUser", user);
+      localStorage.setItem("currentRole", role);
+      window.location.href = "gelirgider.html";
+    });
+  </script>
+<script src="lang.js"></script>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("service-worker.js")
+        .then(reg => console.log("SW kayıtlı:", reg.scope))
+        .catch(err => console.error("SW hatası:", err));
+    });
+  }
+</script>
+</body>
+</html>

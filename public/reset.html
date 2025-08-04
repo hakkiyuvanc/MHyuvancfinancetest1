@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head><title>Şifre Sıfırla</title></head>
+<body>
+  <h2>🔐 Şifre Sıfırlama</h2>
+  <form onsubmit="return sendResetEmail(event)">
+    <label>Email adresiniz:</label>
+    <input type="email" id="emailInput" required />
+    <button type="submit">Gönder</button>
+  </form>
+  <p id="result"></p>
+  <script>
+    function sendResetEmail(e) {
+      e.preventDefault();
+      const email = document.getElementById("emailInput").value;
+      fetch("/send-reset", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email })
+      })
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("result").innerText = data.message || "Gönderildi.";
+      });
+    }
+  </script>
+</body>
+</html>

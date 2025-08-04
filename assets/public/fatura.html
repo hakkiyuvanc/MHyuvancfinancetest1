@@ -1,0 +1,90 @@
+<!--DOC
+  <button onclick="window.location.href='/export-pdf'" style="margin-top:10px;"-->📄 <span data-i18n="export_pdf"></span>
+<button onclick="window.location.href='/export-csv'" style="margin-top:20px;">📥 <span data-i18n="export_csv"></span></button>
+TYPE html&gt;
+<html lang="tr">
+<head>
+<link href="/styles/global.css" rel="stylesheet"/>
+<meta charset="utf-8"/>
+<title>Fatura Yönetimi</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="/lang.js"></script>
+<link href="yardim.css" rel="stylesheet"/><link href="manifest.json" rel="manifest"/></head>
+<body style="font-family:sans-serif;max-width:600px;margin:40px auto;">
+<nav>
+<a href="index.html">Anasayfa</a> |
+          <a href="fatura.html">Faturalar</a> |
+          <a href="raporlar.html">Raporlar</a> |
+          <a href="profil.html">Profil</a> |
+          <a href="logout.html">Çıkış</a>
+</nav>
+<h2>📄 Fatura Listesi</h2>
+<h3>🔍 Fatura Arama / Filtreleme</h3>
+<input id="aramaInput" onkeyup="filtrele()" placeholder="Fatura adı ile ara" type="text"/><br/><br/>
+<ul id="faturaListesi"></ul>
+<h3>➕ Yeni Fatura Ekle</h3>
+<input id="faturaAdi" placeholder="Fatura Adı" type="text"/><br/><br/>
+<h3>📎 Fatura Dosyası Ekle</h3>
+<input id="dosyaYukle" type="file"/><br/><br/>
+<button onclick="dosyaGonder()">Yükle</button>
+<h3>🖨️ PDF Çıktısı</h3>
+<button onclick="pdfCikar()">PDF Olarak Kaydet</button>
+<script>
+    const faturalar = ["Fatura #1001", "Fatura #1002", "Fatura #1003"];
+    const ul = document.getElementById("faturaListesi");
+    faturalar.forEach((f, index) => {
+      const li = document.createElement("li");
+      li.innerHTML = `<a href="/fatura-detay.html?id=${1000 + index + 1}">${f}</a>`;
+      ul.appendChild(li);
+    });
+
+    function dosyaGonder() {
+      const fileInput = document.getElementById("dosyaYukle");
+      const formData = new FormData();
+      formData.append("file", fileInput.files[0]);
+
+      fetch("/fatura-dosya", {
+        method: "POST",
+        headers: { "Authorization": "Bearer " + localStorage.getItem("token") },
+        body: formData
+      }).then(r => r.json()).then(res => {
+        alert(res.message || "Yükleme tamamlandı");
+      });
+    }
+
+    function pdfCikar() {
+      window.print();
+    }
+  
+function filtrele() {
+  const arama = document.getElementById("aramaInput").value.toLowerCase();
+  const elemanlar = document.querySelectorAll("#faturaListesi li");
+  elemanlar.forEach(el => {
+    el.style.display = el.innerText.toLowerCase().includes(arama) ? "" : "none";
+  });
+}
+
+</script>
+<script src="yardim.js"></script><script src="lang.js"></script>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("service-worker.js")
+        .then(reg => console.log("SW kayıtlı:", reg.scope))
+        .catch(err => console.error("SW hatası:", err));
+    });
+  }
+</script>
+<div class="export-buttons">
+<a class="button" href="/api/export/csv">📤 CSV Olarak İndir</a>
+<a class="button" href="/api/export/json">🧾 JSON Olarak İndir</a>
+</div>
+
+<div class="export-buttons">
+<a class="button" href="/api/export/csv">📤 CSV Olarak İndir</a>
+<a class="button" href="/api/export/json">🧾 JSON Olarak İndir</a>
+<a class="button" href="/api/export/pdf">📄 PDF Olarak İndir</a>
+<a class="button" href="/api/export/excel">📊 Excel Olarak İndir</a>
+</div>
+</body>
+</html>

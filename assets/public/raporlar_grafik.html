@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<title>Finansal Grafikler | KOBİ Paneli</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="public/styles.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="yardim.css" rel="stylesheet"/><link href="manifest.json" rel="manifest"/></head>
+<body>
+<header>
+<h1>📈 Finansal Rapor Grafik Paneli</h1>
+<nav>
+<a href="index.html">Anasayfa</a>
+<a href="raporlar.html">Raporlar</a>
+<a class="aktif" href="raporlar_grafik.html">Grafikler</a>
+</nav>
+</header>
+<main>
+<section class="card">
+<canvas height="240" id="raporChart"></canvas>
+</section>
+<section class="card">
+<h2>Gelir &amp; Gider (Aylık)</h2>
+<canvas height="200" id="barChart" width="400"></canvas>
+</section>
+<section class="card">
+<h2>Kar Dağılımı</h2>
+<canvas height="200" id="pieChart" width="400"></canvas>
+</section>
+</main>
+<script>
+    const gelirGiderCtx = document.getElementById("barChart");
+    new Chart(gelirGiderCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs'],
+        datasets: [
+          {
+            label: 'Gelir',
+            data: [12000, 15000, 14000, 18000, 16000],
+            backgroundColor: 'rgba(75, 192, 192, 0.7)'
+          },
+          {
+            label: 'Gider',
+            data: [8000, 7000, 6000, 9000, 8500],
+            backgroundColor: 'rgba(255, 99, 132, 0.7)'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+
+    const karCtx = document.getElementById("pieChart");
+    new Chart(karCtx, {
+      type: 'pie',
+      data: {
+        labels: ['Net Kar', 'Vergi', 'Zarar'],
+        datasets: [{
+          label: 'Kar Dağılımı',
+          data: [15000, 3000, 2000],
+          backgroundColor: [
+            'rgba(54, 162, 235, 0.7)',
+            'rgba(255, 206, 86, 0.7)',
+            'rgba(255, 99, 132, 0.7)'
+          ]
+        }]
+      }
+    });
+  </script>
+<footer>
+<p>© 2025 KOBİ Finans Paneli</p>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="raporlar_grafik.js"></script>
+<script src="yardim.js"></script><script src="lang.js"></script>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("service-worker.js")
+        .then(reg => console.log("SW kayıtlı:", reg.scope))
+        .catch(err => console.error("SW hatası:", err));
+    });
+  }
+</script>
+</body>
+</html>

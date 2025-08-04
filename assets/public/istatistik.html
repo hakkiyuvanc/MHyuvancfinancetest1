@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<title>İstatistik Paneli</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+<nav class="navbar">
+<ul>
+<li><a href="index.html">🏠 Anasayfa</a></li>
+<li><a href="gelirgider.html">💰 Gelir-Gider</a></li>
+<li><a href="fatura.html">📄 Faturalar</a></li>
+<li><a href="raporlar.html">📊 Raporlar</a></li>
+<li><a href="ai.html">🧠 AI Paneli</a></li>
+<li><a href="istatistik.html">📋 İstatistik</a></li>
+<li><a href="logs.html">📁 Log</a></li>
+<li><a href="profil.html">👤 Profil</a></li>
+<li><a href="yardim.html">🆘 Yardım</a></li>
+</ul>
+</nav>
+
+<main class="container">
+<h2>📊 Sistem İstatistikleri</h2>
+<ul id="istatistikListesi">
+<li>Toplam Kullanıcı: <span id="kullanici"></span></li>
+<li>Toplam Fatura: <span id="fatura"></span></li>
+<li>Toplam Gelir: <span id="gelir"></span> ₺</li>
+<li>Toplam Gider: <span id="gider"></span> ₺</li>
+</ul>
+</main>
+<script>
+    fetch("/api/stats")
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("kullanici").textContent = data.kullanicilar;
+        document.getElementById("fatura").textContent = data.faturalar;
+        document.getElementById("gelir").textContent = data.toplam_gelir;
+        document.getElementById("gider").textContent = data.toplam_gider;
+      });
+  </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+[
+  {
+    "user": "admin",
+    "action": "Sisteme giriş yaptı",
+    "timestamp": "2025-07-25T14:00:00"
+  },
+  {
+    "user": "admin",
+    "action": "Yeni fatura oluşturdu",
+    "timestamp": "2025-07-25T14:05:22"
+  },
+  {
+    "user": "demo",
+    "action": "Dosya yükledi",
+    "timestamp": "2025-07-25T14:10:00"
+  }
+]

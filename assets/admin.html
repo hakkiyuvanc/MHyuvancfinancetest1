@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>👨‍💼 Admin Paneli</title>
+</head>
+<body>
+  <h2>👨‍💼 Kullanıcı Yönetimi</h2>
+  <div id="adminMessage"></div>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>ID</th><th>Email</th><th>Rol</th><th>İşlemler</th>
+      </tr>
+    </thead>
+    <tbody id="userTable"></tbody>
+  </table>
+
+  <script>
+    const token = localStorage.getItem("access_token");
+
+    async function loadUsers() {
+      const res = await fetch("/admin/users", {
+        headers: { "Authorization": "Bearer " + token }
+      });
+      const users = await res.json();
+      const tbody = document.getElementById("userTable");
+      tbody.innerHTML = "";
+
+      users.forEach(u => {
+        tbody.innerHTML += `
+          <tr>
+            <td>${u.id}</td>
+            <td>${u.email}</td>
+            <td>${u.role}</td>
+            <td>
+              <button onclick="changeRole(${u.id}, 'user')">user</button>
+              <button onclick="changeRole(${u.id}, 'admin')">admin</button>
+              <button onclick="deleteUser(${u.id})">🗑 Sil</button>
+            </td>
+          </tr>
+        `;
+      });
+    }
+
+    async function deleteUser(id) {
+      if (!confirm("Bu kullanıcıyı silmek istiyor musunuz?")) return;
+      const res = await fetch(`/admin/users/${id}`, {
+        method: "DELETE",
+        headers: { "Authorization": "Bearer " + token }
+      });
+      const result = await res.json();
+      document.getElementById("adminMessage").innerText = result.message || "Silindi";
+      loadUsers();
+    }
+
+    async function changeRole(id, role) {
+      const res = await fetch(`/admin/users/${id}/role?new_role=${role}`, {
+        method: "PUT",
+        headers: { "Authorization": "Bearer " + token }
+      });
+      const result = await res.json();
+      document.getElementById("adminMessage").innerText = result.message || "Rol güncellendi";
+      loadUsers();
+    }
+
+    loadUsers();
+  </script>
+</body>
+</html>

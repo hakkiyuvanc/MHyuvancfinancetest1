@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<title>Şifre Sıfırlama</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+<nav class="navbar">
+<ul>
+<li><a href="index.html">🏠 Anasayfa</a></li>
+<li><a href="gelirgider.html">💰 Gelir-Gider</a></li>
+<li><a href="fatura.html">📄 Faturalar</a></li>
+<li><a href="raporlar.html">📊 Raporlar</a></li>
+<li><a href="ai.html">🧠 AI Paneli</a></li>
+<li><a href="istatistik.html">📋 İstatistik</a></li>
+<li><a href="logs.html">📁 Log</a></li>
+<li><a href="profil.html">👤 Profil</a></li>
+<li><a href="yardim.html">🆘 Yardım</a></li>
+</ul>
+</nav>
+
+<main class="container">
+<h2>🔐 Şifre Sıfırlama</h2>
+<form action="/api/reset/request" method="post">
+<label for="email">Kayıtlı E-posta:</label>
+<input name="email" required="" type="email"/>
+<button type="submit">📩 Doğrulama Kodu Gönder</button>
+</form>
+</main>
+</body>
+</html>

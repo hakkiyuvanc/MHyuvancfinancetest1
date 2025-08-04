@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>📊 İstatistik Paneli</title>
+</head>
+<body>
+  <h2>📊 İstatistik Paneli</h2>
+  <div id="stats">
+    <p>Yükleniyor...</p>
+  </div>
+
+  <script>
+    const token = localStorage.getItem("access_token");
+
+    async function loadStats() {
+      const res = await fetch("/stats", {
+        headers: {
+          "Authorization": "Bearer " + token
+        }
+      });
+      const data = await res.json();
+
+      const statsDiv = document.getElementById("stats");
+      statsDiv.innerHTML = `
+        <ul>
+          <li>🧾 Toplam Fatura Sayısı: <strong>${data.fatura_sayisi}</strong></li>
+          <li>💰 Toplam Gelir (KDV hariç): <strong>${data.toplam_gelir} TL</strong></li>
+          <li>📈 Toplam KDV: <strong>${data.toplam_kdv} TL</strong></li>
+          <li>👤 En Çok Fatura Kesilen Müşteri: <strong>${data.en_cok_fatura_kesilen_musteri || "Yok"}</strong></li>
+          <li>🔢 Bu Müşteriye Kesilen Fatura Sayısı: <strong>${data.fatura_sayisi_bu_musteri}</strong></li>
+        </ul>
+      `;
+    }
+
+    loadStats();
+  </script>
+</body>
+</html>

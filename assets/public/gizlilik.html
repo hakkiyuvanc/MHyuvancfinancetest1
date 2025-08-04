@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<title>Gizlilik Politikası</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="style.css" rel="stylesheet"/>
+<link href="manifest.json" rel="manifest"/></head>
+<body>
+<nav>
+<a href="index.html">Anasayfa</a> |
+          <a href="fatura.html">Faturalar</a> |
+          <a href="raporlar.html">Raporlar</a> |
+          <a href="profil.html">Profil</a> |
+          <a href="logout.html">Çıkış</a>
+</nav>
+<header>
+<h1>Gizlilik Politikası</h1>
+</header>
+<main class="container">
+<section class="card">
+<h2>1. Genel İlkeler</h2>
+<p>Kullanıcı verilerinin gizliliği bizim için önceliklidir. Veriler hiçbir şekilde üçüncü şahıslarla paylaşılmaz.</p>
+</section>
+<section class="card">
+<h2>2. Veri Toplama Yöntemi</h2>
+<p>Yalnızca kullanıcı tarafından doğrudan girilen bilgiler toplanır. Çerez kullanılmaz. Otomatik izleme yapılmaz.</p>
+</section>
+<section class="card">
+<h2>3. AI Sistemleri ile Veri Paylaşımı</h2>
+<p>Yapay zeka modülü sadece kullanıcı ekranındaki verilerle çalışır. Veriler sistem dışına çıkarılmaz.</p>
+</section>
+<section class="card">
+<h2>4. Güvenlik</h2>
+<p>Veriler şifrelenmiş olarak saklanır. Erişimler rol tabanlı şekilde sınırlandırılmıştır.</p>
+</section>
+<section class="card">
+<h2>5. İletişim</h2>
+<p>Gizlilik ile ilgili her türlü sorunuz için: <strong>info@kobi.ai</strong></p>
+</section>
+</main>
+<script src="lang.js"></script>
+
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("service-worker.js")
+        .then(reg => console.log("SW kayıtlı:", reg.scope))
+        .catch(err => console.error("SW hatası:", err));
+    });
+  }
+</script>
+</body>
+</html>

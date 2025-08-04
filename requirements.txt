@@ -1,6 +1,7 @@
 fastapi
 uvicorn
 bcrypt
+jinja2
 itsdangerous
 reportlab
 openpyxl
